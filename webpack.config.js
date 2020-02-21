@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   entry: './src/main.js',
@@ -18,12 +19,7 @@ module.exports = {
         ],
       },      {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-          }
-          // other vue-loader options go here
-        }
+        use: 'vue-loader'
       },
       {
         test: /\.js$/,
@@ -53,7 +49,10 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new VueLoaderPlugin(),
+  ]
 }
 
 if (process.env.NODE_ENV === 'production') {
