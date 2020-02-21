@@ -6,6 +6,8 @@ describe('Counter.vue', () => {
   it('increments count when button is clicked', () => {
     const wrapper = shallowMount(Counter)
     wrapper.find('button').trigger('click')
-    expect(wrapper.find('div').text()).contains('1')
+    wrapper.vm.$nextTick().then(() => {
+      expect(wrapper.find('.count').text()).contains('1')
+    })
   })
 })
